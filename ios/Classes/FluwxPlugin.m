@@ -22,9 +22,6 @@ FluwxLaunchMiniProgramHandler *_fluwxLaunchMiniProgramHandler;
 FluwxSubscribeMsgHandler *_fluwxSubscribeMsgHandler;
 FluwxAutoDeductHandler *_fluwxAutoDeductHandler;
 
-- (void)dealloc {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 + (void)registerWithRegistrar:(NSObject <FlutterPluginRegistrar> *)registrar {
     FlutterMethodChannel *channel = [FlutterMethodChannel
@@ -40,10 +37,6 @@ FluwxAutoDeductHandler *_fluwxAutoDeductHandler;
 
 - (instancetype)initWithRegistrar:(NSObject <FlutterPluginRegistrar> *)registrar methodChannel:(FlutterMethodChannel *)flutterMethodChannel {
     self = [super init];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(handleOpenURL:)
-//                                                 name:@"WeChat"
-//                                               object:nil];
     if (self) {
         _fluwxShareHandler = [[FluwxShareHandler alloc] initWithRegistrar:registrar];
         _fluwxAuthHandler = [[FluwxAuthHandler alloc] initWithRegistrar:registrar methodChannel:flutterMethodChannel];
@@ -76,10 +69,6 @@ FluwxAutoDeductHandler *_fluwxAutoDeductHandler;
         return;
     }
 
-    if ([@"payWithFluwx" isEqualToString:call.method]) {
-        return;
-    }
-
     if ([@"launchMiniProgram" isEqualToString:call.method]) {
         [_fluwxLaunchMiniProgramHandler handleLaunchMiniProgram:call result:result];
         return;
@@ -103,7 +92,6 @@ FluwxAutoDeductHandler *_fluwxAutoDeductHandler;
         [_fluwxAutoDeductHandler handleAutoDeductWithCall:call result:result];
         return;
     }
-
 
     if ([@"openWXApp" isEqualToString:call.method]) {
         result(@([WXApi openWXApp]));

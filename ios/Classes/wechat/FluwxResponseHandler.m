@@ -46,7 +46,6 @@ FlutterMethodChannel *fluwxMethodChannel = nil;
                 && [_delegate respondsToSelector:@selector(managerDidRecvMessageResponse:)]) {
             SendMessageToWXResp *messageResp = (SendMessageToWXResp *) resp;
             [_delegate managerDidRecvMessageResponse:messageResp];
-//            @{fluwxKeyPlatform: fluwxKeyIOS, fluwxKeyResult: @(done)}
         }
 
 
@@ -144,10 +143,6 @@ FlutterMethodChannel *fluwxMethodChannel = nil;
         if (miniProgramResp.extMsg != nil) {
             result[@"extMsg"] = miniProgramResp.extMsg;
         }
-
-
-//        @"extMsg":miniProgramResp.extMsg == nil?@"":miniProgramResp.extMsg
-
 
         [fluwxMethodChannel invokeMethod:@"onLaunchMiniProgramResponse" arguments:result];
 
