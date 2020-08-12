@@ -16,6 +16,7 @@ A new Flutter plugin for Wechat SDK.
   s.public_header_files = 'Classes/public/*.h'
   s.static_framework = true
   s.dependency 'Flutter'
+  s.dependency 'mob_sharesdk/ShareSDKPlatforms/WeChat'
 
   s.frameworks = ["SystemConfiguration", "CoreTelephony","WebKit"]
   s.libraries = ["z", "sqlite3.0", "c++"]
